@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ButtonDefault, ButtonYellow } from "./components/Buttons/Buttons";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#F7E64D",
+    },
+  },
+});
 
-export default App;
+export const App: React.FC = () => (
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <Switch>
+        <Route path="/kit" component={ButtonDefault} />
+        <Route path="/button" component={ButtonYellow} />
+        <Route exact path="/">
+          Не найдено
+        </Route>
+      </Switch>
+    </ThemeProvider>
+  </BrowserRouter>
+);
